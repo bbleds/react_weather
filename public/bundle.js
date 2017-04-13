@@ -24860,21 +24860,55 @@
 
 	var React = __webpack_require__(1);
 
+	// require custom components
+	var Nav = __webpack_require__(217);
+
 	// main app component
 	var Main = React.createClass({
-	  displayName: "Main",
+	  displayName: 'Main',
 
 	  // render this to DOM
 	  render: function render() {
 	    return React.createElement(
-	      "h2",
+	      'div',
 	      null,
-	      "Main Component"
+	      React.createElement(Nav, null),
+	      React.createElement(
+	        'h1',
+	        null,
+	        'Hello from main'
+	      )
 	    );
 	  }
 	});
 
 	module.exports = Main;
+
+/***/ },
+/* 217 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var React = __webpack_require__(1);
+
+	var Nav = React.createClass({
+	  displayName: "Nav",
+
+	  render: function render() {
+	    return React.createElement(
+	      "nav",
+	      null,
+	      React.createElement(
+	        "li",
+	        null,
+	        "Example link one"
+	      )
+	    );
+	  }
+	});
+
+	module.exports = Nav;
 
 /***/ }
 /******/ ]);
