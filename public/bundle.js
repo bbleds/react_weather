@@ -25002,8 +25002,8 @@
 	  render: function render() {
 	    return React.createElement(
 	      'form',
-	      null,
-	      React.createElement('input', { type: 'text', placeholder: 'Enter city name' }),
+	      { onSubmit: '' },
+	      React.createElement('input', { type: 'text', ref: 'cityName', placeholder: 'Enter city name' }),
 	      React.createElement(
 	        'button',
 	        { type: 'submit' },
