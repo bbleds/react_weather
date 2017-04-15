@@ -8,6 +8,7 @@ const ReactRouter = require('react-router');
 const Main = require('Main');
 const Weather = require('Weather');
 const About = require('About');
+const Example = require('Examples');
 
 // get our react router dependencies, and use destructuring
 const {Route, Router, IndexRoute, hashHistory} = require('react-router');
@@ -19,9 +20,8 @@ ReactDOM.render(
   <Router history={hashHistory}>
     <Route path="/" component={Main}>
       <IndexRoute component={Weather}/>
-    </Route>
-    <Route path="/about" component={Main}>
-      <IndexRoute component={About}/>
+      <Route path="about" component={About}/>
+      <Route path="example" component={Example}/>
     </Route>
   </Router>
 </div>,

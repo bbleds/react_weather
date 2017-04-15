@@ -11,7 +11,6 @@ const Main = React.createClass({
     return (
       <div>
         <Nav />
-        <h1>Hello from main</h1>
         {this.props.children}
       </div>
     );

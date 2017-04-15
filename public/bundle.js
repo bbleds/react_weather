@@ -53,6 +53,8 @@
 	// require custom components -- note: path is specified as alias in webpack config
 	var Main = __webpack_require__(216);
 	var Weather = __webpack_require__(218);
+	var About = __webpack_require__(221);
+	var Example = __webpack_require__(222);
 
 	// get our react router dependencies, and use destructuring
 
@@ -76,7 +78,9 @@
 	    React.createElement(
 	      Route,
 	      { path: '/', component: Main },
-	      React.createElement(IndexRoute, { component: Weather })
+	      React.createElement(IndexRoute, { component: Weather }),
+	      React.createElement(Route, { path: 'about', component: About }),
+	      React.createElement(Route, { path: 'example', component: Example })
 	    )
 	  )
 	),
@@ -24878,11 +24882,6 @@
 	      'div',
 	      null,
 	      React.createElement(Nav, null),
-	      React.createElement(
-	        'h1',
-	        null,
-	        'Hello from main'
-	      ),
 	      this.props.children
 	    );
 	  }
@@ -24898,17 +24897,31 @@
 
 	var React = __webpack_require__(1);
 
+	var _require = __webpack_require__(159),
+	    Link = _require.Link,
+	    IndexLink = _require.IndexLink;
+
 	var Nav = React.createClass({
-	  displayName: "Nav",
+	  displayName: 'Nav',
 
 	  render: function render() {
 	    return React.createElement(
-	      "nav",
+	      'nav',
 	      null,
 	      React.createElement(
-	        "li",
-	        null,
-	        "Example link one"
+	        IndexLink,
+	        { to: '/', activeClassName: 'active', activeStyle: { fontWeight: 'bold' } },
+	        'Get Weather'
+	      ),
+	      React.createElement(
+	        IndexLink,
+	        { to: '/about', activeClassName: 'active', activeStyle: { fontWeight: 'bold' } },
+	        'About'
+	      ),
+	      React.createElement(
+	        IndexLink,
+	        { to: '/example', activeClassName: 'active', activeStyle: { fontWeight: 'bold' } },
+	        'Examples'
 	      )
 	    );
 	  }
@@ -24923,6 +24936,8 @@
 	'use strict';
 
 	var React = __webpack_require__(1);
+	var WeatherMsg = __webpack_require__(219);
+	var WeatherForm = __webpack_require__(220);
 
 	var Weather = React.createClass({
 	  displayName: 'Weather',
@@ -24935,13 +24950,119 @@
 	      React.createElement(
 	        'h1',
 	        null,
-	        'from weather component'
-	      )
+	        'Get Weather'
+	      ),
+	      React.createElement(WeatherForm, null),
+	      React.createElement(WeatherMsg, null)
 	    );
 	  }
 	});
 
 	module.exports = Weather;
+
+/***/ },
+/* 219 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+
+	var WeatherMsg = React.createClass({
+	  displayName: 'WeatherMsg',
+
+	  // render this to DOM
+	  render: function render() {
+	    return React.createElement(
+	      'div',
+	      null,
+	      React.createElement(
+	        'h1',
+	        null,
+	        'Weather message goes here'
+	      )
+	    );
+	  }
+	});
+
+	module.exports = WeatherMsg;
+
+/***/ },
+/* 220 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+
+	var WeatherForm = React.createClass({
+	  displayName: 'WeatherForm',
+
+	  // render this to DOM
+	  render: function render() {
+	    return React.createElement(
+	      'form',
+	      null,
+	      React.createElement('input', { type: 'text', placeholder: 'Enter city name' }),
+	      React.createElement(
+	        'button',
+	        { type: 'submit' },
+	        'Get Weather'
+	      )
+	    );
+	  }
+	});
+
+	module.exports = WeatherForm;
+
+/***/ },
+/* 221 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var React = __webpack_require__(1);
+
+	var About = React.createClass({
+	  displayName: "About",
+
+	  render: function render() {
+	    return React.createElement(
+	      "h2",
+	      null,
+	      "About component"
+	    );
+	  }
+	});
+
+	module.exports = About;
+
+/***/ },
+/* 222 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+
+	var Examples = React.createClass({
+	  displayName: 'Examples',
+
+	  // render this to DOM
+	  render: function render() {
+	    return React.createElement(
+	      'div',
+	      null,
+	      React.createElement(
+	        'h1',
+	        null,
+	        'My example component'
+	      )
+	    );
+	  }
+	});
+
+	module.exports = Examples;
 
 /***/ }
 /******/ ]);
