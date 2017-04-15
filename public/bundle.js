@@ -52,6 +52,7 @@
 
 	// require custom components -- note: path is specified as alias in webpack config
 	var Main = __webpack_require__(216);
+	var Weather = __webpack_require__(218);
 
 	// get our react router dependencies, and use destructuring
 
@@ -72,7 +73,11 @@
 	  React.createElement(
 	    Router,
 	    { history: hashHistory },
-	    React.createElement(Route, { path: '/', component: Main })
+	    React.createElement(
+	      Route,
+	      { path: '/', component: Main },
+	      React.createElement(IndexRoute, { component: Weather })
+	    )
 	  )
 	),
 	// pass dom node
@@ -24877,7 +24882,8 @@
 	        'h1',
 	        null,
 	        'Hello from main'
-	      )
+	      ),
+	      this.props.children
 	    );
 	  }
 	});
@@ -24909,6 +24915,33 @@
 	});
 
 	module.exports = Nav;
+
+/***/ },
+/* 218 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+
+	var Weather = React.createClass({
+	  displayName: 'Weather',
+
+	  // render this to DOM
+	  render: function render() {
+	    return React.createElement(
+	      'div',
+	      null,
+	      React.createElement(
+	        'h1',
+	        null,
+	        'from weather component'
+	      )
+	    );
+	  }
+	});
+
+	module.exports = Weather;
 
 /***/ }
 /******/ ]);
