@@ -13,7 +13,6 @@ const WeatherForm = React.createClass({
     }
 
     // call parent function with the location from our form
-    console.log('Sweet, let me fetch that for you! Fetching:', location);
     this.props.onSearch(location);
     // clear out our form
     this.refs.location.value = '';
