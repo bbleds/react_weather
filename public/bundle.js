@@ -24942,6 +24942,21 @@
 	var Weather = React.createClass({
 	  displayName: 'Weather',
 
+	  getInitialState: function getInitialState() {
+	    return {
+	      location: 'Nashville',
+	      temp: 88
+	    };
+	  },
+	  // handle a location search
+	  handleSearch: function handleSearch(location) {
+	    console.log('calling parent search on location:', location);
+	    this.setState({
+	      location: location,
+	      temp: 23
+	    });
+	  },
+
 	  // render this to DOM
 	  render: function render() {
 	    return React.createElement(
@@ -24952,8 +24967,8 @@
 	        null,
 	        'Get Weather'
 	      ),
-	      React.createElement(WeatherForm, null),
-	      React.createElement(WeatherMsg, null)
+	      React.createElement(WeatherForm, { onSearch: this.handleSearch }),
+	      React.createElement(WeatherMsg, { location: this.state.location, temp: this.state.temp })
 	    );
 	  }
 	});
@@ -24977,9 +24992,12 @@
 	      'div',
 	      null,
 	      React.createElement(
-	        'h1',
+	        'h2',
 	        null,
-	        'Weather message goes here'
+	        'It is ',
+	        this.props.temp,
+	        ' in ',
+	        this.props.location
 	      )
 	    );
 	  }
@@ -24998,12 +25016,27 @@
 	var WeatherForm = React.createClass({
 	  displayName: 'WeatherForm',
 
+	  onFormSubmit: function onFormSubmit(e) {
+	    e.preventDefault();
+	    var location = this.refs.location.value;
+
+	    if (!location) {
+	      console.log('Oops, please eneter a location name');
+	      return false;
+	    }
+
+	    // call parent function with the location from our form
+	    console.log('Sweet, let me fetch that for you! Fetching:', location);
+	    this.props.onSearch(location);
+	    // clear out our form
+	    this.refs.location.value = '';
+	  },
 	  // render this to DOM
 	  render: function render() {
 	    return React.createElement(
 	      'form',
-	      { onSubmit: '' },
-	      React.createElement('input', { type: 'text', ref: 'cityName', placeholder: 'Enter city name' }),
+	      { onSubmit: this.onFormSubmit },
+	      React.createElement('input', { type: 'text', ref: 'location', placeholder: 'Enter city name' }),
 	      React.createElement(
 	        'button',
 	        { type: 'submit' },
