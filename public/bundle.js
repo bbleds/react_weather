@@ -24974,13 +24974,19 @@
 	      isLoading: true
 	    });
 	    openWeatherMap.getTemp(location).then(function (temp) {
+	      // round tempt to next int
+	      temp = Math.round(temp);
 	      that.setState({
 	        location: location,
 	        temp: temp,
 	        isLoading: false
 	      });
+	      // handle error case
 	    }, function (errorMessage) {
-	      console.log('Oops, we got an error', errorMessage);
+	      that.setState({
+	        isLoading: false
+	      });
+	      alert('Oops, we encountered an error when processing your request. Please try again.');
 	    });
 	  },
 
@@ -25073,7 +25079,7 @@
 	        null,
 	        'It is ',
 	        this.props.temp,
-	        ' in ',
+	        ' degrees in ',
 	        this.props.location
 	      )
 	    );
